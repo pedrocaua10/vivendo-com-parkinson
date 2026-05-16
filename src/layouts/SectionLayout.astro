@@ -276,8 +276,10 @@ const current = sections[currentIndex];
   }
 
   /* ---- Details/summary: desktop — summary oculto, ol sempre visível ---- */
+  /* !important necessário: UA stylesheet usa details:not([open])>:not(summary) com
+     especificidade (0,1,2), que vence regras author sem !important */
   .chapter-nav-details > summary { display: none; }
-  .chapter-nav-details > ol      { display: block; }
+  .chapter-nav-details > ol      { display: block !important; }
 
   /* ---- Chevron ---- */
   .chevron {
@@ -304,7 +306,9 @@ const current = sections[currentIndex];
     }
     .chapter-nav-title { display: none; }
 
-    .chapter-nav-details > ol { display: revert; }
+    /* Fechado por padrão; aberto só quando details tem [open] */
+    .chapter-nav-details > ol              { display: none !important; }
+    .chapter-nav-details[open] > ol        { display: grid !important; }
 
     .chapter-nav-details > summary {
       display: flex;
@@ -333,7 +337,6 @@ const current = sections[currentIndex];
       padding-bottom: var(--space-6);
       border-bottom: 1px solid var(--rule);
       margin-bottom: var(--space-2);
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-1);
     }
