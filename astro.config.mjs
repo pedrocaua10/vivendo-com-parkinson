@@ -5,7 +5,7 @@ import AstroPWA from '@vite-pwa/astro';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://vivendocomparkinson.org', // troque para o domínio real quando souber
+  site: 'https://vivendo-com-parkinson.pages.dev',
   integrations: [
     mdx(),
     sitemap(),
