@@ -1,0 +1,345 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  section: string;            // slug atual, ex: "sintomas"
+  eyebrow?: string;           // pequeno texto sobre o título, ex: "Capítulo 04"
+}
+
+const { title, description, section, eyebrow } = Astro.props;
+
+// Estrutura completa das 13 seções da PWA
+const sections = [
+  { slug: 'sobre',        label: 'Sobre o projeto',     chapter: '01' },
+  { slug: 'apb',          label: 'A Associação',        chapter: '02' },
+  { slug: 'doenca',       label: 'A Doença',            chapter: '03' },
+  { slug: 'sintomas',     label: 'Sintomas',            chapter: '04' },
+  { slug: 'diagnostico',  label: 'Diagnóstico',         chapter: '05' },
+  { slug: 'tratamento',   label: 'Tratamento',          chapter: '06' },
+  { slug: 'equipe',       label: 'Equipe de saúde',     chapter: '07' },
+  { slug: 'cuidador',     label: 'Para Cuidadores',     chapter: '08' },
+  { slug: 'direitos',     label: 'Seus Direitos',       chapter: '09' },
+  { slug: 'educacao',     label: 'Educação em Saúde',   chapter: '10' },
+  { slug: 'tecnologia',   label: 'Tecnologia e DP',     chapter: '11' },
+  { slug: 'depoimentos',  label: 'Depoimentos',         chapter: '12' },
+  { slug: 'contato',      label: 'Contato e Ajuda',     chapter: '13' },
+];
+
+const currentIndex = sections.findIndex(s => s.slug === section);
+const prev = currentIndex > 0 ? sections[currentIndex - 1] : null;
+const next = currentIndex < sections.length - 1 ? sections[currentIndex + 1] : null;
+const current = sections[currentIndex];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="section-shell container">
+
+    <!-- Sidebar de navegação entre capítulos -->
+    <aside class="chapter-nav" aria-label="Sumário do portal">
+      <p class="chapter-nav-title">Sumário</p>
+      <details class="chapter-nav-details">
+        <summary class="chapter-nav-summary">
+          Ver todos os capítulos ({sections.length})
+          <svg class="chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <ol>
+          {sections.map(s => (
+            <li>
+              <a
+                href={`/${s.slug}`}
+                aria-current={s.slug === section ? 'page' : undefined}
+              >
+                <span class="chapter-num">{s.chapter}</span>
+                <span class="chapter-label">{s.label}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </aside>
+
+    <!-- Conteúdo principal da seção -->
+    <article class="section-content">
+      <header class="section-header">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {!eyebrow && current && (
+          <p class="eyebrow">Capítulo {current.chapter}</p>
+        )}
+        <h1>{title}</h1>
+      </header>
+
+      <div class="section-prose">
+        <slot />
+      </div>
+
+      <!-- Navegação Anterior / Próximo -->
+      <nav class="section-pagination" aria-label="Navegação entre capítulos">
+        {prev ? (
+          <a href={`/${prev.slug}`} class="page-link page-link--prev">
+            <span class="page-direction">← Anterior</span>
+            <span class="page-label">{prev.label}</span>
+          </a>
+        ) : <span></span>}
+        {next ? (
+          <a href={`/${next.slug}`} class="page-link page-link--next">
+            <span class="page-direction">Próximo →</span>
+            <span class="page-label">{next.label}</span>
+          </a>
+        ) : <span></span>}
+      </nav>
+    </article>
+
+  </div>
+</BaseLayout>
+
+<style>
+  .section-shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: var(--space-12);
+    padding-block: var(--space-16);
+    align-items: start;
+  }
+
+  /* ---- Sidebar ---- */
+  .chapter-nav {
+    position: sticky;
+    top: 100px;
+    padding-right: var(--space-6);
+    border-right: 1px solid var(--rule);
+  }
+  .chapter-nav-title {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    margin-bottom: var(--space-6);
+    font-weight: 700;
+  }
+  .chapter-nav ol {
+    list-style: none;
+    counter-reset: none;
+  }
+  .chapter-nav li {
+    margin-bottom: var(--space-1);
+  }
+  .chapter-nav a {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    border-radius: var(--radius-sm);
+    min-height: var(--touch-target-min);
+    align-items: center;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+  .chapter-nav a:hover {
+    background: var(--cream-warm);
+    color: var(--ink);
+  }
+  .chapter-nav a[aria-current="page"] {
+    background: var(--ink);
+    color: var(--cream);
+    font-weight: 700;
+  }
+  .chapter-nav a[aria-current="page"] .chapter-num {
+    color: var(--terracotta-soft);
+  }
+  .chapter-num {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+
+  /* ---- Conteúdo ---- */
+  .section-content {
+    max-width: 760px;
+  }
+  .section-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    margin-top: var(--space-4);
+  }
+  .section-header .eyebrow {
+    margin-bottom: 0;
+  }
+
+  /* ---- Tipografia do corpo (Markdown content) ---- */
+  .section-prose :global(p) {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-6);
+    max-width: 65ch;
+  }
+  .section-prose :global(h2) {
+    font-size: 2rem;
+    margin-top: var(--space-16);
+    margin-bottom: var(--space-4);
+    color: var(--ink);
+  }
+  .section-prose :global(h3) {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-3);
+    color: var(--ink);
+  }
+  .section-prose :global(ul),
+  .section-prose :global(ol) {
+    margin: var(--space-4) 0 var(--space-6) var(--space-6);
+    color: var(--ink-soft);
+  }
+  .section-prose :global(li) {
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+  }
+  .section-prose :global(strong) {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .section-prose :global(blockquote) {
+    border-left: 3px solid var(--terracotta);
+    padding: var(--space-3) var(--space-6);
+    margin: var(--space-8) 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink);
+    background: var(--cream-warm);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+  .section-prose :global(.callout) {
+    background: var(--cream-warm);
+    border-left: 3px solid var(--teal);
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    margin: var(--space-8) 0;
+  }
+  .section-prose :global(.callout--warning) {
+    border-left-color: var(--terracotta);
+  }
+  .section-prose :global(.callout h3) {
+    margin-top: 0;
+    color: var(--teal);
+  }
+
+  /* ---- Paginação ---- */
+  .section-pagination {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--rule);
+  }
+  .page-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-6);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all var(--transition-base);
+    min-height: var(--touch-target-min);
+  }
+  .page-link:hover {
+    border-color: var(--teal);
+    background: var(--cream-warm);
+    transform: translateY(-2px);
+  }
+  .page-link--next { text-align: right; }
+  .page-direction {
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .page-label {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+  }
+
+  /* ---- Details/summary: desktop — summary oculto, ol sempre visível ---- */
+  .chapter-nav-details > summary { display: none; }
+  .chapter-nav-details > ol      { display: block; }
+
+  /* ---- Chevron ---- */
+  .chevron {
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+  }
+  .chapter-nav-details[open] .chevron { transform: rotate(180deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .chevron { transition: none !important; }
+  }
+
+  /* ---- Mobile: sumário vira <details> colapsável ---- */
+  @media (max-width: 1000px) {
+    .section-shell {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    .chapter-nav {
+      position: static;
+      padding-right: 0;
+      border-right: none;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .chapter-nav-title { display: none; }
+
+    .chapter-nav-details > ol { display: revert; }
+
+    .chapter-nav-details > summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--touch-target-min);
+      padding: var(--space-3) var(--space-4);
+      background: var(--cream-warm);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      list-style: none;
+      user-select: none;
+    }
+    .chapter-nav-details > summary::-webkit-details-marker { display: none; }
+    .chapter-nav-details > summary:focus-visible {
+      outline: 3px solid var(--terracotta);
+      outline-offset: 2px;
+    }
+
+    .chapter-nav-details[open] > ol {
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-6);
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: var(--space-2);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-1);
+    }
+  }
+  @media (max-width: 600px) {
+    .chapter-nav-details[open] > ol { grid-template-columns: 1fr; }
+    .section-pagination             { grid-template-columns: 1fr; }
+  }
+</style>
