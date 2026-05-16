@@ -1,0 +1,406 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Tulip from '~/components/Tulip.astro';
+---
+
+<BaseLayout title="Vivendo com Parkinson">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="eyebrow">UnB-FCE · Associação Parkinson Brasília</p>
+        <h1 class="hero-title">
+          Pesquisa, educação e <em>cuidado</em> em torno da Doença de Parkinson.
+        </h1>
+        <p class="hero-sub">
+          Iniciativa nascida no Departamento de Fonoaudiologia da UnB-FCE
+          em parceria com a Associação Parkinson Brasília — para que ninguém
+          atravesse o diagnóstico sozinho.
+        </p>
+        <div class="cta-group">
+          <a href="/doenca" class="btn btn--primary">
+            <span>Para pacientes e familiares</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/tratamento" class="btn btn--secondary">
+            <span>Para profissionais e pesquisadores</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-quote">
+        <p class="quote-text">
+          <span aria-hidden="true">“</span>
+          Uma das coisas que mais ajudam é carinho, o afeto, não apenas o medicamento.
+          <span aria-hidden="true">”</span>
+        </p>
+        <p class="quote-attr">— C.P.S., indivíduo com Parkinson</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NÚMEROS -->
+  <section class="numbers">
+    <div class="container numbers-grid">
+      <div class="number-item">
+        <p class="number-big">3<span class="accent">%</span></p>
+        <p class="number-label">dos brasileiros acima de 60 anos vivem com Doença de Parkinson.</p>
+        <p class="number-source">Estudo Bambuí, Barbosa et al. 2006</p>
+      </div>
+      <div class="number-item">
+        <p class="number-big">2<span class="accent">ª</span></p>
+        <p class="number-label">doença neurodegenerativa mais comum na população idosa.</p>
+      </div>
+      <div class="number-item">
+        <p class="number-big">21</p>
+        <p class="number-label">anos da Associação Parkinson Brasília, fundada em 2005.</p>
+      </div>
+      <div class="number-item">
+        <p class="number-big">13</p>
+        <p class="number-label">capítulos cobrindo todas as frentes do cuidado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÍNDICE VISUAL -->
+  <section class="container index-section">
+    <div class="section-head">
+      <h2>Por onde <em>começar</em>?</h2>
+      <p>O portal está organizado em capítulos. Você pode ler na ordem ou ir direto para o tema que interessa agora.</p>
+    </div>
+
+    <div class="index-grid">
+      <a href="/sobre" class="index-card">
+        <span class="card-num">01</span>
+        <h3>Sobre o projeto</h3>
+        <p>De onde nasceu, quem está por trás e qual é a proposta.</p>
+      </a>
+      <a href="/apb" class="index-card">
+        <span class="card-num">02</span>
+        <h3>A Associação</h3>
+        <p>A história da Associação Parkinson Brasília e suas atividades.</p>
+      </a>
+      <a href="/doenca" class="index-card">
+        <span class="card-num">03</span>
+        <h3>A Doença</h3>
+        <p>O que é a Doença de Parkinson, como ela age no cérebro e seus estágios.</p>
+      </a>
+      <a href="/sintomas" class="index-card">
+        <span class="card-num">04</span>
+        <h3>Sintomas</h3>
+        <p>Os sinais motores, não motores e os sintomas iniciais.</p>
+      </a>
+      <a href="/diagnostico" class="index-card">
+        <span class="card-num">05</span>
+        <h3>Diagnóstico</h3>
+        <p>Como o diagnóstico é feito e quais exames podem auxiliar.</p>
+      </a>
+      <a href="/tratamento" class="index-card">
+        <span class="card-num">06</span>
+        <h3>Tratamento</h3>
+        <p>Medicamentos, cirurgia e estratégias multidisciplinares.</p>
+      </a>
+      <a href="/equipe" class="index-card">
+        <span class="card-num">07</span>
+        <h3>Equipe de saúde</h3>
+        <p>O papel de cada profissional na jornada do cuidado.</p>
+      </a>
+      <a href="/cuidador" class="index-card">
+        <span class="card-num">08</span>
+        <h3>Para Cuidadores</h3>
+        <p>Acolhimento e estratégias para quem cuida.</p>
+      </a>
+      <a href="/direitos" class="index-card">
+        <span class="card-num">09</span>
+        <h3>Seus Direitos</h3>
+        <p>Benefícios e direitos garantidos por lei no Brasil.</p>
+      </a>
+      <a href="/educacao" class="index-card">
+        <span class="card-num">10</span>
+        <h3>Educação em Saúde</h3>
+        <p>Materiais educativos, glossário e perguntas frequentes.</p>
+      </a>
+      <a href="/tecnologia" class="index-card">
+        <span class="card-num">11</span>
+        <h3>Tecnologia e DP</h3>
+        <p>Ferramentas digitais e monitoramento de sintomas.</p>
+      </a>
+      <a href="/depoimentos" class="index-card">
+        <span class="card-num">12</span>
+        <h3>Depoimentos</h3>
+        <p>Histórias de pacientes, cuidadores e familiares.</p>
+      </a>
+      <a href="/contato" class="index-card">
+        <span class="card-num">13</span>
+        <h3>Contato e Ajuda</h3>
+        <p>Como entrar em contato e onde buscar apoio.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- APOIO IMEDIATO -->
+  <section class="support-section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Apoio <em>imediato</em></h2>
+        <p>Canais gratuitos disponíveis 24h em todo o Brasil.</p>
+      </div>
+      <div class="support-grid">
+        <a href="tel:192" class="support-card">
+          <span class="support-icon" aria-hidden="true">+</span>
+          <h3>Emergência médica</h3>
+          <span class="support-number">192</span>
+          <p>SAMU — Atendimento Móvel de Urgência</p>
+        </a>
+        <a href="tel:188" class="support-card">
+          <span class="support-icon" aria-hidden="true">♥</span>
+          <h3>Apoio emocional</h3>
+          <span class="support-number">188</span>
+          <p>CVV — Centro de Valorização da Vida</p>
+        </a>
+        <a href="tel:136" class="support-card">
+          <span class="support-icon" aria-hidden="true">i</span>
+          <h3>Disque Saúde</h3>
+          <span class="support-number">136</span>
+          <p>Ministério da Saúde</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ---- HERO ---- */
+  .hero { padding-block: var(--space-24) var(--space-16); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: end;
+  }
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.75rem);
+    line-height: 1.02;
+    margin: var(--space-6) 0;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal);
+    font-weight: 300;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 42ch;
+  }
+  .cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    max-width: 460px;
+  }
+  .cta-group .btn {
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+  }
+  .hero-quote {
+    border-left: 2px solid var(--tulip);
+    padding-left: var(--space-8);
+  }
+  .quote-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.6rem;
+    line-height: 1.35;
+    margin-bottom: var(--space-6);
+  }
+  .quote-attr {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- NÚMEROS ---- */
+  .numbers {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+    padding-block: var(--space-12);
+  }
+  .number-item {
+    border-left: 1px solid var(--rule);
+    padding-left: var(--space-6);
+  }
+  .number-item:first-child { border-left: none; padding-left: 0; }
+  .number-big {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+  .number-big .accent { color: var(--terracotta); }
+  .number-label {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .number-source {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-top: var(--space-2);
+  }
+
+  /* ---- ÍNDICE ---- */
+  .index-section { padding-block: var(--space-24); }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-16);
+    margin-bottom: var(--space-16);
+    align-items: start;
+  }
+  .section-head h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+  }
+  .section-head h2 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .section-head p {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-4);
+  }
+  .index-card {
+    display: block;
+    padding: var(--space-6);
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-base);
+    min-height: 160px;
+  }
+  .index-card:hover {
+    border-color: var(--teal);
+    background: var(--cream);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -12px rgba(20, 17, 15, 0.15);
+  }
+  .card-num {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .index-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    margin: var(--space-2) 0 var(--space-3);
+    color: var(--ink);
+  }
+  .index-card p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ---- APOIO ---- */
+  .support-section {
+    background: var(--cream-warm);
+    padding-block: var(--space-24);
+  }
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+  .support-card {
+    display: block;
+    padding: var(--space-8);
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-base);
+  }
+  .support-card:hover {
+    border-color: var(--ink);
+    transform: translateY(-3px);
+  }
+  .support-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: var(--cream);
+    display: grid;
+    place-items: center;
+    margin-bottom: var(--space-4);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  .support-card h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+  }
+  .support-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--teal);
+    display: block;
+    margin: var(--space-3) 0 var(--space-2);
+  }
+  .support-card p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    .hero { padding-block: var(--space-12) var(--space-8); }
+    .hero-grid { grid-template-columns: 1fr; gap: var(--space-12); }
+    .numbers-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6) var(--space-4);
+    }
+    .number-item:nth-child(3) {
+      border-left: none;
+      padding-left: 0;
+    }
+    .index-section { padding-block: var(--space-16); }
+    .section-head {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-12);
+    }
+    .support-section { padding-block: var(--space-16); }
+    .support-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

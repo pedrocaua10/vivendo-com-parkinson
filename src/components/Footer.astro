@@ -1,0 +1,220 @@
+---
+import Tulip from './Tulip.astro';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <Tulip size="22px" color="var(--tulip)" />
+          </span>
+          <span class="brand-text">Vivendo com <em>Parkinson</em></span>
+        </div>
+        <p>
+          Iniciativa de pesquisa, educação em saúde e acolhimento sobre a Doença de Parkinson —
+          parceria entre a Universidade de Brasília (UnB-FCE) e a Associação Parkinson Brasília.
+        </p>
+        <p class="ethics-note">
+          Conteúdo educativo, baseado em evidência científica. Não substitui consulta médica.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h2>Navegue</h2>
+        <ul>
+          <li><a href="/sobre">Sobre o projeto</a></li>
+          <li><a href="/doenca">A Doença</a></li>
+          <li><a href="/sintomas">Sintomas</a></li>
+          <li><a href="/tratamento">Tratamento</a></li>
+          <li><a href="/cuidador">Para Cuidadores</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Apoio imediato</h2>
+        <ul>
+          <li><a href="tel:192">SAMU 192</a></li>
+          <li><a href="tel:188">CVV 188</a></li>
+          <li><a href="tel:136">Disque Saúde 136</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h2>Contato</h2>
+        <ul>
+          <li><a href="mailto:contato@exemplo.org">contato@exemplo.org</a></li>
+          <li>Brasília · DF</li>
+          <li><a href="/contato">Formulário de contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-partners">
+      <span class="partner-tag">Realização</span>
+      <a href="https://fce.unb.br" class="partner-seal" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/assets/logos/logo-unb.png"
+          alt="Universidade de Brasília"
+          class="partner-logo-img"
+          loading="lazy"
+        />
+      </a>
+      <a href="https://www.parkinsonbrasilia.org.br" class="partner-seal" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/assets/logos/logo-apb.jpg"
+          alt="Associação Parkinson Brasília"
+          class="partner-logo-img"
+          loading="lazy"
+        />
+      </a>
+    </div>
+
+    <div class="copyright">
+      <span>© {year} Vivendo com Parkinson · Parecer ético UNB/FCE 2.279.574</span>
+      <span><a href="/acessibilidade">Acessibilidade</a> · <a href="/privacidade">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--cream-warm);
+    border-top: 1px solid var(--rule);
+    margin-top: var(--space-16);
+  }
+  .footer-inner {
+    padding-block: var(--space-16) var(--space-8);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+  .footer-brand .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    margin-bottom: var(--space-4);
+  }
+  .footer-brand .brand em { font-style: italic; }
+  .brand-mark {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1.5px solid var(--rule);
+    display: grid; place-items: center;
+  }
+  .footer-brand p {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 38ch;
+    line-height: 1.6;
+  }
+  .ethics-note {
+    margin-top: var(--space-4);
+    font-size: 0.85rem !important;
+    font-style: italic;
+    color: var(--ink-muted) !important;
+  }
+  .footer-col h2 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--ink);
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li {
+    margin-bottom: var(--space-2);
+    font-size: 0.95rem;
+  }
+  .footer-col a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-block;
+    padding: var(--space-1) 0;
+  }
+  .footer-col a:hover { color: var(--teal); }
+
+  .footer-partners {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--rule);
+    margin-bottom: var(--space-8);
+    flex-wrap: wrap;
+  }
+  .partner-tag {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+  .partner-seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    background: #ffffff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    height: 60px;
+    min-width: var(--touch-target-min);
+    transition: box-shadow var(--transition-fast);
+    text-decoration: none;
+  }
+  .partner-seal:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.13);
+  }
+  .partner-seal:focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 2px;
+  }
+  .partner-logo-img {
+    display: block;
+    max-height: 40px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .copyright a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+  }
+  .copyright a:hover { color: var(--teal); }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 500px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .copyright { flex-direction: column; }
+  }
+</style>

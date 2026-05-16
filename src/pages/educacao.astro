@@ -1,0 +1,124 @@
+---
+import SectionLayout from '~/layouts/SectionLayout.astro';
+---
+
+<SectionLayout
+  title="Educação em Saúde"
+  description="Materiais educativos, glossário e perguntas frequentes sobre a Doença de Parkinson."
+  section="educacao"
+>
+
+<p>
+  Reunimos aqui materiais educativos, um glossário com os termos mais usados no
+  acompanhamento da Doença de Parkinson e respostas para perguntas frequentes — sempre
+  em linguagem acessível e baseada em evidência.
+</p>
+
+<h2>Materiais educativos</h2>
+
+<h3>Manual "Cuidando do Paciente com Parkinson" — 2ª edição</h3>
+<p>
+  Manual completo desenvolvido pela equipe do projeto. Aborda sintomas, diagnóstico,
+  tratamento multidisciplinar, papel do cuidador e relatos de pacientes. Disponível em
+  e-book pela Editora Kognos.
+</p>
+
+<p><em>Em breve: download direto pelo portal e versão em áudio.</em></p>
+
+<h2>Perguntas frequentes (FAQ)</h2>
+
+<h3>A Doença de Parkinson tem cura?</h3>
+<p>
+  Até o momento, <strong>não existe cura</strong>. Mas existem tratamentos medicamentosos,
+  cirúrgicos e estratégias multidisciplinares que controlam os sintomas e permitem uma
+  boa qualidade de vida.
+</p>
+
+<h3>Parkinson é hereditário?</h3>
+<p>
+  A grande maioria dos casos é <strong>idiopática</strong> (sem causa conhecida). Casos
+  hereditários existem, mas são minoria. Histórico familiar pode ser um fator, mas não
+  determina necessariamente a doença.
+</p>
+
+<h3>Posso continuar trabalhando após o diagnóstico?</h3>
+<p>
+  Depende do estágio da doença, da profissão e da resposta ao tratamento. Muitas pessoas
+  continuam ativas por muitos anos. Converse com sua equipe médica e considere
+  adaptações.
+</p>
+
+<h3>Que tipo de exercício posso fazer?</h3>
+<p>
+  Atividades aeróbicas (caminhada, hidroginástica), fortalecimento muscular, alongamento
+  e atividades como dança e canto coral são bem indicadas. O importante é
+  <strong>não ficar parado</strong>. Sempre com orientação profissional.
+</p>
+
+<h3>É preciso fazer dieta especial?</h3>
+<p>
+  Não há dieta restritiva, mas há cuidados importantes — especialmente com a interação
+  da levodopa e alimentos proteicos. Procure um nutricionista para um plano individual.
+</p>
+
+<h2>Glossário</h2>
+
+<dl class="glossary">
+  <dt>Acinesia</dt>
+  <dd>Diminuição da quantidade e amplitude do movimento.</dd>
+
+  <dt>Bradicinesia</dt>
+  <dd>Lentidão na execução do movimento.</dd>
+
+  <dt>Discinesia</dt>
+  <dd>Movimentos involuntários — podem aparecer como coreia, atetose, distonia ou mioclonia.</dd>
+
+  <dt>Disfagia</dt>
+  <dd>Dificuldade no processo de deglutição (engolir).</dd>
+
+  <dt>Disartrofonia</dt>
+  <dd>Alteração da fala caracterizada por lentidão, pouca articulação e voz fraca.</dd>
+
+  <dt>Dopamina</dt>
+  <dd>Neurotransmissor essencial para o controle dos movimentos. Sua redução é a principal característica da DP.</dd>
+
+  <dt>Freezing</dt>
+  <dd>Bloqueio motor súbito — os pés parecem "grudados" no chão.</dd>
+
+  <dt>Hiposmia</dt>
+  <dd>Diminuição parcial do olfato. Anosmia é a perda total.</dd>
+
+  <dt>Levodopa</dt>
+  <dd>Principal medicamento usado no tratamento da DP. Converte-se em dopamina no cérebro.</dd>
+
+  <dt>Sialorreia</dt>
+  <dd>Excesso de saliva.</dd>
+
+  <dt>Xerostomia</dt>
+  <dd>Boca seca.</dd>
+
+  <dt>Wearing off</dt>
+  <dd>Período em que o efeito da medicação diminui antes da próxima dose.</dd>
+</dl>
+
+</SectionLayout>
+
+<style>
+  .glossary {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .glossary dt {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--teal);
+    margin-top: var(--space-4);
+  }
+  .glossary dd {
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-left: 0;
+  }
+</style>

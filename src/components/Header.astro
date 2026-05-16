@@ -1,0 +1,198 @@
+---
+import Tulip from './Tulip.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/sobre',         label: 'Sobre' },
+  { href: '/doenca',        label: 'A Doença' },
+  { href: '/sintomas',      label: 'Sintomas' },
+  { href: '/diagnostico',   label: 'Diagnóstico' },
+  { href: '/tratamento',    label: 'Tratamento' },
+  { href: '/cuidador',      label: 'Cuidador' },
+  { href: '/tecnologia',    label: 'Tecnologia' },
+  { href: '/contato',       label: 'Contato' },
+];
+---
+
+<header class="site-header">
+  <div class="nav-wrap container">
+    <a href="/" class="brand" aria-label="Ir para a página inicial">
+      <span class="brand-mark" aria-hidden="true">
+        <Tulip size="22px" color="var(--tulip)" />
+      </span>
+      <span class="brand-text">
+        Vivendo com <em>Parkinson</em>
+      </span>
+    </a>
+
+    <nav aria-label="Navegação principal" id="main-nav">
+      <ul>
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      aria-label="Abrir menu de navegação"
+      aria-expanded="false"
+      aria-controls="main-nav"
+    >
+      <span aria-hidden="true">☰</span>
+    </button>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 239, 230, 0.94);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-block: var(--space-4);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .brand em { font-style: italic; }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--cream-warm);
+    border: 1.5px solid var(--rule);
+    display: grid;
+    place-items: center;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    position: relative;
+    padding: var(--space-2) 0;
+    min-height: var(--touch-target-min);
+    display: inline-flex;
+    align-items: center;
+    transition: color var(--transition-fast);
+  }
+  nav a:hover { color: var(--teal); }
+  nav a[aria-current="page"] {
+    color: var(--teal);
+    font-weight: 700;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--terracotta);
+    transition: width var(--transition-base);
+  }
+  nav a:hover::after,
+  nav a[aria-current="page"]::after {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: var(--cream-warm);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: var(--ink);
+    min-width: var(--touch-target-min);
+    min-height: var(--touch-target-min);
+    padding: 0;
+  }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    nav.is-open {
+      display: block;
+      position: absolute;
+      top: 100%;
+      right: var(--space-4);
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 32px -8px rgba(0,0,0,0.15);
+      padding: var(--space-4);
+    }
+    nav.is-open ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+    nav.is-open a {
+      padding: var(--space-3) var(--space-4);
+      min-width: 200px;
+    }
+    .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  }
+</style>
+
+<script>
+  // Mobile menu — script de hidratação leve, executa após carregamento
+  const toggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('#main-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(!!isOpen));
+    toggle.setAttribute(
+      'aria-label',
+      isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'
+    );
+  });
+
+  // Fechar ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!nav?.classList.contains('is-open')) return;
+    const target = e.target as Node;
+    if (!nav.contains(target) && !toggle?.contains(target)) {
+      nav.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

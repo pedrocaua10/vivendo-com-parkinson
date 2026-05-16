@@ -1,0 +1,209 @@
+/* ============================================================
+   Vivendo com Parkinson — Global styles
+   Design tokens compartilhados por toda a aplicação.
+   Princípios:
+   - Tema claro, alto contraste (WCAG AA mínimo, AAA quando possível)
+   - Tipografia editorial (Fraunces) + corpo de alta legibilidade (Atkinson Hyperlegible)
+   - Alvos de toque ≥ 48×48px (recomendação para público com Parkinson)
+   - Respeita prefers-reduced-motion e prefers-color-scheme
+============================================================ */
+
+:root {
+  /* ---- Cores ---- */
+  --cream:        #F4EFE6;
+  --cream-warm:   #EDE6D9;
+  --ink:          #14110F;
+  --ink-soft:     #3A332C;
+  --ink-muted:    #6B6258;
+  --teal:         #1F4D45;
+  --teal-deep:    #163832;
+  --terracotta:   #C25A3C;
+  --terracotta-soft: #E89B7E;
+  --tulip:        #B83A2C;  /* Tulipa "Doutor James Parkinson" — símbolo da doença */
+  --leaf:         #2D7A3E;
+  --rule:         #D8CFC0;
+  --sage:         #8AA293;
+
+  /* ---- Tipografia ---- */
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans:  'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif;
+
+  /* ---- Espaçamento ---- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* ---- Layout ---- */
+  --max-width: 1280px;
+  --max-prose: 70ch;          /* largura máxima de leitura confortável */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* ---- Tamanhos de toque (a11y para tremor) ---- */
+  --touch-target-min: 48px;
+
+  /* ---- Transições ---- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* ---- Reset enxuto ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 18px;           /* base maior que o padrão para legibilidade */
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Tipografia padrão ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+p { max-width: var(--max-prose); }
+
+a {
+  color: var(--teal);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--teal-deep); }
+
+/* ---- Foco visível obrigatório (WCAG 2.4.7) ---- */
+*:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---- Skip link (WCAG 2.4.1) ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: var(--ink);
+  color: var(--cream);
+  padding: var(--space-3) var(--space-6);
+  z-index: 100;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+.skip-link:focus {
+  left: 1rem;
+  color: var(--cream);
+}
+
+/* ---- Container ---- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: var(--space-8);
+}
+@media (max-width: 700px) {
+  .container { padding-inline: var(--space-4); }
+}
+
+/* ---- Utilitários de tipografia ---- */
+.serif { font-family: var(--font-serif); }
+.eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--terracotta);
+}
+
+/* ---- Botões / CTAs (alvos ≥ 48px) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+}
+.btn--primary {
+  background: var(--teal);
+  color: var(--cream);
+}
+.btn--primary:hover {
+  background: var(--teal-deep);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -12px rgba(20, 17, 15, 0.3);
+}
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--secondary:hover {
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+/* ---- Reduce motion (WCAG 2.3.3) ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Tipografia escalada em telas pequenas ---- */
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+}
+
+/* ---- Suporte de impressão básico ---- */
+@media print {
+  body { background: white; color: black; }
+  nav, footer, .no-print { display: none !important; }
+}

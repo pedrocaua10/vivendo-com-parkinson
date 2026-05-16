@@ -1,0 +1,39 @@
+---
+/**
+ * Tulip.astro — Tulipa vermelha, símbolo internacional da Doença de Parkinson.
+ * Referência histórica: em 1980, o horticultor holandês J.W.S. Van der Wereld
+ * (portador de DP) desenvolveu uma tulipa vermelha e branca e a batizou
+ * "Doutor James Parkinson". Adotada como símbolo a partir do Dia Mundial da DP.
+ */
+interface Props {
+  size?: string;
+  color?: string;
+  ariaLabel?: string;
+}
+
+const { size = '1em', color = 'currentColor', ariaLabel } = Astro.props;
+const isDecorative = !ariaLabel;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 32"
+  xmlns="http://www.w3.org/2000/svg"
+  role={isDecorative ? 'presentation' : 'img'}
+  aria-hidden={isDecorative ? 'true' : undefined}
+  aria-label={ariaLabel}
+  style={{ display: 'inline-block', verticalAlign: '-0.15em', color }}
+>
+  <path
+    d="M12 4 C 7 4, 5 9, 5 13 C 5 16, 7 17, 9 17 C 11 17, 12 16, 12 13 C 12 16, 13 17, 15 17 C 17 17, 19 16, 19 13 C 19 9, 17 4, 12 4 Z"
+    fill="currentColor"
+  />
+  <path
+    d="M11 17 L 11 28 M 11 28 C 9 26, 7 25, 5 25 M 11 28 C 13 26, 15 25, 17 25"
+    stroke="var(--leaf, #2D7A3E)"
+    stroke-width="1.5"
+    fill="none"
+    stroke-linecap="round"
+  />
+</svg>
