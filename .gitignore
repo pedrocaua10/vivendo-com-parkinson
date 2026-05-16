@@ -21,10 +21,26 @@ yarn-error.log*
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea/
-.DS_Store
+.fleet/
+*.swp
+*.swo
+
+# AI tools
+.cursor/
+.copilot/
+.continue/
 
 # OS
+.DS_Store
+._*
 Thumbs.db
+Desktop.ini
+
+# Python (scripts de extração)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
 # PWA dev artifacts
 dev-dist/
