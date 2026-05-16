@@ -44,7 +44,10 @@ vivendo-com-parkinson/
 │
 ├── public/                   # arquivos estáticos servidos como /
 │   ├── favicon.svg           # tulipa, símbolo da DP
-│   └── icons/                # ícones PWA (a gerar — ver README dentro da pasta)
+│   ├── icons/                # ícones PWA (a gerar — ver README dentro da pasta)
+│   └── assets/
+│       ├── logos/            # logo-unb.png/.webp  logo-apb.jpg/.webp
+│       └── figuras/          # 7 ilustrações do manual (PNG + WebP)
 │
 ├── src/
 │   ├── layouts/
@@ -54,6 +57,7 @@ vivendo-com-parkinson/
 │   ├── components/
 │   │   ├── Header.astro          # navegação principal + mobile menu
 │   │   ├── Footer.astro          # rodapé com parceiros e contato
+│   │   ├── Figure.astro          # <picture> WebP+PNG com legenda e variantes
 │   │   └── Tulip.astro           # SVG da tulipa (símbolo)
 │   │
 │   ├── pages/                # cada arquivo = uma rota
@@ -76,6 +80,11 @@ vivendo-com-parkinson/
 │   │   └── global.css        # design tokens + reset + base
 │   │
 │   └── content/secoes/       # (reservado para conteúdo em Markdown futuramente)
+│
+├── scripts/                  # ferramentas de desenvolvimento (não vão pro build)
+│   ├── extract-figures.py    # extrai figuras do PDF via PyMuPDF (Python 3.11+)
+│   ├── extract-pdf-images.py # extrai páginas completas do PDF em PNG
+│   └── trim-and-convert.mjs  # trim de bordas, resize e conversão WebP (Node/sharp)
 │
 └── docs/
     ├── CLAUDE.md             # instruções pro Claude Code
@@ -114,13 +123,14 @@ vivendo-com-parkinson/
 ### Fase atual (scaffold)
 - [x] Estrutura Astro com 13 páginas
 - [x] Design system implementado em CSS variables
-- [x] Layout base + layout de seção com sidebar
+- [x] Layout base + layout de seção com sidebar (colapsável em mobile)
 - [x] Configuração PWA inicial (manifest, service worker)
 - [x] Conteúdo dos capítulos com base no Manual 2ª ed.
+- [x] Logos parceiros no rodapé (UnB + APB)
+- [x] Componente Figure com WebP e 7 ilustrações do manual
 
 ### Próximos passos
 - [ ] Gerar ícones PWA (192, 512, 512-maskable)
-- [ ] Adicionar logos reais da UnB e da APB
 - [ ] Migrar conteúdo das `.astro` para `.md` em content collections (facilita edição)
 - [ ] Página de Acessibilidade declarando conformidade
 - [ ] Página de Privacidade (LGPD)
