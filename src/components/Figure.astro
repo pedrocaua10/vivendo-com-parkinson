@@ -1,0 +1,101 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant?: 'inline' | 'wide' | 'aside';
+  credit?: string;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  variant = 'inline',
+  credit,
+} = Astro.props;
+---
+
+<figure class={`fig fig--${variant}`}>
+  <picture>
+    <source srcset={src.replace(/\.png$/, '.webp')} type="image/webp" />
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      class="fig__img"
+    />
+  </picture>
+  {(caption || credit) && (
+    <figcaption class="fig__caption">
+      {caption && <span class="fig__caption-text">{caption}</span>}
+      {credit && <cite class="fig__credit">{credit}</cite>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .fig {
+    margin: var(--space-8) 0;
+  }
+
+  .fig__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  /* ---- Variante inline (default): largura do texto ---- */
+  .fig--inline {
+    max-width: 65ch;
+  }
+
+  /* ---- Variante wide: largura total do container ---- */
+  .fig--wide {
+    max-width: 100%;
+  }
+
+  /* ---- Variante aside: flutua à direita no desktop ---- */
+  .fig--aside {
+    max-width: 320px;
+    float: right;
+    margin-left: var(--space-8);
+    margin-bottom: var(--space-6);
+    margin-top: var(--space-2);
+  }
+
+  /* ---- Legenda ---- */
+  .fig__caption {
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .fig__caption-text {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .fig__credit {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    font-style: normal;
+    opacity: 0.8;
+  }
+
+  /* ---- Mobile: aside vira inline ---- */
+  @media (max-width: 700px) {
+    .fig--aside {
+      float: none;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+</style>
