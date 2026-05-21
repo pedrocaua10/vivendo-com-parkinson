@@ -1,0 +1,259 @@
+<div
+  id="audio-player"
+  class="audio-player"
+  role="region"
+  aria-label="Leitor de texto em áudio"
+>
+  <!-- Estado idle -->
+  <button
+    id="btn-play"
+    class="audio-btn audio-btn--play"
+    type="button"
+    aria-pressed="false"
+    aria-label="Ouvir esta página em áudio"
+  >
+    <span class="audio-icon" aria-hidden="true">🔊</span>
+    <span class="audio-label">Ouvir a página</span>
+  </button>
+
+  <!-- Estado ativo (reproduzindo ou pausado) -->
+  <div id="audio-controls" class="audio-controls" hidden>
+    <span id="audio-status" class="audio-status" aria-live="polite" aria-atomic="true">
+      Lendo…
+    </span>
+    <div class="audio-actions">
+      <button id="btn-toggle" class="audio-btn audio-btn--secondary" type="button" aria-label="Pausar leitura">
+        <span class="audio-icon" aria-hidden="true">⏸</span>
+        <span class="audio-label">Pausar</span>
+      </button>
+      <button id="btn-stop" class="audio-btn audio-btn--secondary" type="button" aria-label="Parar leitura">
+        <span class="audio-icon" aria-hidden="true">⏹</span>
+        <span class="audio-label">Parar</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .audio-player {
+    position: fixed;
+    bottom: var(--space-8);
+    right: var(--space-6);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-2);
+  }
+
+  /* Botão principal (idle) */
+  .audio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--touch-target-min);
+    padding: var(--space-3) var(--space-5);
+    background: var(--cream);
+    border: 1.5px solid var(--rule);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition:
+      background var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .audio-btn:hover {
+    background: var(--cream-warm);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .audio-btn:focus-visible {
+    outline: 3px solid var(--terracotta);
+    outline-offset: 3px;
+  }
+
+  .audio-btn--play {
+    background: var(--teal);
+    border-color: var(--teal-deep);
+    color: var(--cream);
+  }
+
+  .audio-btn--play:hover {
+    background: var(--teal-deep);
+  }
+
+  .audio-btn--secondary {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.88rem;
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  .audio-icon {
+    font-size: 1.1em;
+    line-height: 1;
+  }
+
+  /* Painel de controles (visível quando ativo) */
+  .audio-controls {
+    background: var(--cream);
+    border: 1.5px solid var(--rule);
+    border-radius: var(--radius-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-width: 200px;
+  }
+
+  .audio-controls[hidden] { display: none; }
+
+  .audio-status {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .audio-actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  @media (max-width: 500px) {
+    .audio-player {
+      right: var(--space-4);
+      bottom: var(--space-6);
+    }
+    .audio-btn {
+      font-size: 0.88rem;
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .audio-btn { transition: none; }
+  }
+</style>
+
+<script>
+  const player   = document.getElementById('audio-player');
+  const btnPlay  = document.getElementById('btn-play') as HTMLButtonElement;
+  const controls = document.getElementById('audio-controls') as HTMLElement;
+  const btnToggle = document.getElementById('btn-toggle') as HTMLButtonElement;
+  const btnStop  = document.getElementById('btn-stop') as HTMLButtonElement;
+  const status   = document.getElementById('audio-status') as HTMLElement;
+
+  // Remove o player silenciosamente se o browser não suportar
+  if (!('speechSynthesis' in window)) {
+    player?.remove();
+  } else {
+    const synth = window.speechSynthesis;
+    let utt: SpeechSynthesisUtterance | null = null;
+    let isPaused = false;
+
+    function getPageText(): string {
+      const main = document.querySelector('#main-content');
+      if (!main) return document.body.innerText;
+      // Exclui a navegação prev/next para não ler links redundantes
+      const clone = main.cloneNode(true) as HTMLElement;
+      clone.querySelectorAll('.section-pagination, nav').forEach(el => el.remove());
+      return clone.innerText.trim();
+    }
+
+    function getPortugueseVoice(): SpeechSynthesisVoice | null {
+      const voices = synth.getVoices();
+      return voices.find(v => v.lang.startsWith('pt')) ?? null;
+    }
+
+    function buildUtterance(): SpeechSynthesisUtterance {
+      const u = new SpeechSynthesisUtterance(getPageText());
+      u.lang = 'pt-BR';
+      u.rate = 0.9;
+      u.voice = getPortugueseVoice();
+
+      u.onstart = () => {
+        isPaused = false;
+        setPlayingState();
+      };
+      u.onend = () => {
+        resetState();
+      };
+      u.onerror = () => {
+        resetState();
+      };
+      return u;
+    }
+
+    function setPlayingState() {
+      btnPlay.hidden = true;
+      controls.hidden = false;
+      status.textContent = 'Lendo…';
+      btnToggle.setAttribute('aria-label', 'Pausar leitura');
+      btnToggle.querySelector('.audio-icon')!.textContent = '⏸';
+      btnToggle.querySelector('.audio-label')!.textContent = 'Pausar';
+      btnPlay.setAttribute('aria-pressed', 'true');
+    }
+
+    function setPausedState() {
+      status.textContent = 'Pausado';
+      btnToggle.setAttribute('aria-label', 'Continuar leitura');
+      btnToggle.querySelector('.audio-icon')!.textContent = '▶';
+      btnToggle.querySelector('.audio-label')!.textContent = 'Continuar';
+    }
+
+    function resetState() {
+      synth.cancel();
+      utt = null;
+      isPaused = false;
+      btnPlay.hidden = false;
+      controls.hidden = true;
+      btnPlay.setAttribute('aria-pressed', 'false');
+    }
+
+    // Play
+    btnPlay.addEventListener('click', () => {
+      synth.cancel();
+      utt = buildUtterance();
+      // Aguarda vozes no Chrome (async na primeira chamada)
+      if (synth.getVoices().length === 0) {
+        speechSynthesis.onvoiceschanged = () => {
+          utt!.voice = getPortugueseVoice();
+          speechSynthesis.onvoiceschanged = null;
+        };
+      }
+      synth.speak(utt);
+    });
+
+    // Pausar / Continuar
+    btnToggle.addEventListener('click', () => {
+      if (!isPaused) {
+        synth.pause();
+        isPaused = true;
+        setPausedState();
+      } else {
+        synth.resume();
+        isPaused = false;
+        setPlayingState();
+      }
+    });
+
+    // Parar
+    btnStop.addEventListener('click', resetState);
+
+    // Para ao sair da página
+    window.addEventListener('beforeunload', () => synth.cancel());
+
+    // Vozes podem carregar assíncrono no Chrome
+    speechSynthesis.onvoiceschanged = () => {};
+  }
+</script>
