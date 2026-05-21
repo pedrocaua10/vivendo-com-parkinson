@@ -5,12 +5,17 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/sobre',         label: 'Sobre' },
+  { href: '/apb',           label: 'A Associação' },
   { href: '/doenca',        label: 'A Doença' },
   { href: '/sintomas',      label: 'Sintomas' },
   { href: '/diagnostico',   label: 'Diagnóstico' },
   { href: '/tratamento',    label: 'Tratamento' },
+  { href: '/equipe',        label: 'Equipe' },
   { href: '/cuidador',      label: 'Cuidador' },
+  { href: '/direitos',      label: 'Direitos' },
+  { href: '/educacao',      label: 'Educação' },
   { href: '/tecnologia',    label: 'Tecnologia' },
+  { href: '/depoimentos',   label: 'Depoimentos' },
   { href: '/contato',       label: 'Contato' },
 ];
 ---
@@ -98,14 +103,14 @@ const navItems = [
   nav ul {
     list-style: none;
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-3);
     align-items: center;
   }
 
   nav a {
     color: var(--ink-soft);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     position: relative;
     padding: var(--space-2) 0;
     min-height: var(--touch-target-min);

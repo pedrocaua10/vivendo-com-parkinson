@@ -1,12 +1,12 @@
 # Vivendo com Parkinson
 
-> Portal PWA de pesquisa, educação em saúde e acolhimento sobre a Doença de Parkinson — parceria entre o Departamento de Fonoaudiologia da Universidade de Brasília (UnB-FCE) e a Associação Parkinson Brasília.
+> Portal PWA de pesquisa, educação em saúde e acolhimento sobre a Doença de Parkinson — parceria entre o Departamento de Fonoaudiologia da Universidade de Brasília (UnB-FCTS) e a Associação Parkinson Brasília.
 
 ## Sobre o projeto
 
 Iniciativa nascida a partir do Manual *Cuidando do Paciente com Parkinson* (Pereira & Furia, 2ª ed., Kognos, 2021). Reúne em formato digital, multilíngue e acessível, o conteúdo do manual mais frentes novas — Tecnologia e Parkinson, Educação em Saúde como hub e Contato e Ajuda expandido.
 
-**Aprovação ética:** Comitê de Ética em Pesquisa UNB/FCE — parecer 2.279.574.
+**Aprovação ética:** Comitê de Ética em Pesquisa UNB/FCTS — parecer 2.279.574.
 
 ## Stack técnica
 
@@ -153,7 +153,7 @@ vivendo-com-parkinson/
 
 **Autoria do conteúdo (Manual original):**
 - Naira Rúbia Rodrigues Pereira (Fonoaudióloga, Mestranda UnB)
-- Profa. Dra. Cristina Lemos Barbosa Furia (UnB-FCE)
+- Profa. Dra. Cristina Lemos Barbosa Furia (UnB-FCTS)
 
 **Revisão técnica:**
 - Profa. Dra. Letícia Corrêa Celeste
@@ -166,4 +166,4 @@ vivendo-com-parkinson/
 
 ## Licença
 
-Conteúdo editorial © UnB-FCE / APB. Código do portal: a definir.
+Conteúdo editorial © UnB-FCTS / APB. Código do portal: a definir.

@@ -4,7 +4,7 @@ Este arquivo é lido automaticamente pelo Claude Code quando você abre o projet
 
 ## O que é este projeto
 
-Portal PWA do **Vivendo com Parkinson** — iniciativa de pesquisa, educação e acolhimento sobre a Doença de Parkinson, em parceria entre a UnB-FCE (Departamento de Fonoaudiologia) e a Associação Parkinson Brasília.
+Portal PWA do **Vivendo com Parkinson** — iniciativa de pesquisa, educação e acolhimento sobre a Doença de Parkinson, em parceria entre a UnB-FCTS (Departamento de Fonoaudiologia) e a Associação Parkinson Brasília.
 
 Baseado no Manual *Cuidando do Paciente com Parkinson* (2ª ed., Kognos, 2021), de Naira Rúbia Rodrigues Pereira e Profa. Dra. Cristina Lemos Barbosa Furia.
 
@@ -96,7 +96,7 @@ Em ordem de prioridade:
 
 1. Gerar os ícones PWA (ver `public/icons/README.md`)
 2. Trocar email/contato placeholder em todas as páginas
-3. Adicionar logos reais (UnB-FCE, APB) no Footer
+3. Adicionar logos reais (UnB-FCTS, APB) no Footer
 4. Migrar conteúdo das páginas `.astro` para `.md` com content collections
 5. Implementar formulário de contato (Cloudflare Workers + email)
 6. Auditoria de acessibilidade (axe-core ou Pa11y)
