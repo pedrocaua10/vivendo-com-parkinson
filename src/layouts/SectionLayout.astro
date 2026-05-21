@@ -39,7 +39,7 @@ const current = sections[currentIndex];
     <!-- Sidebar de navegação entre capítulos -->
     <aside class="chapter-nav" aria-label="Sumário do portal">
       <p class="chapter-nav-title">Sumário</p>
-      <details class="chapter-nav-details">
+      <details class="chapter-nav-details" open>
         <summary class="chapter-nav-summary">
           Ver todos os capítulos ({sections.length})
           <svg class="chevron" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -346,3 +346,12 @@ const current = sections[currentIndex];
     .section-pagination             { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  // No mobile o <details> começa com open (necessário para desktop via CSS).
+  // Removemos o atributo no mobile para que o sumário inicie fechado.
+  const details = document.querySelector('.chapter-nav-details') as HTMLDetailsElement | null;
+  if (details && window.matchMedia('(max-width: 1000px)').matches) {
+    details.removeAttribute('open');
+  }
+</script>
