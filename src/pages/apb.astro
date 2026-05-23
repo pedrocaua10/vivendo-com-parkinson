@@ -4,31 +4,47 @@ import SectionLayout from '~/layouts/SectionLayout.astro';
 
 <SectionLayout
   title="A Associação Parkinson Brasília"
-  description="História, missão e atividades da APB."
+  description="Quem somos, onde nos encontrar, atividades e como apoiar a APB."
   section="apb"
 >
 
+<h2>Quem somos</h2>
+
 <p>
-  O <strong>Coronel Carlos Aníbal Pyles Patto</strong>, ex-piloto da Força Aérea Brasileira,
-  foi diagnosticado com Parkinson aos 43 anos. A partir daí passou a se dedicar aos estudos
-  e a atividades voltadas para a promoção da saúde do indivíduo com Doença de Parkinson,
-  produzindo uma série de materiais baseados em sua própria experiência.
+  Fundada em <strong>23 de abril de 2005</strong>, a Associação Parkinson Brasília (APB)
+  atua com a missão de <strong>acolher, informar e oferecer suporte</strong> às pessoas
+  com Doença de Parkinson e aos seus cuidadores em todo o Distrito Federal e entorno.
+  Compreendendo profundamente os impactos clínicos e sociais que a condição traz ao dia
+  a dia, nosso espaço foi criado para ser um pilar de apoio, cuidado e inclusão.
 </p>
 
 <p>
-  Incentivado pela família e por seu neurologista, o <strong>Dr. Nasser Allan</strong>,
-  Patto fundou em <strong>23 de abril de 2005 a Associação Parkinson Brasília (APB)</strong>.
-  A missão da APB é a conscientização sobre a doença e o acolhimento de pacientes, cuidadores
-  e familiares, com foco na qualidade de vida.
+  A APB nasceu da iniciativa do <strong>Coronel Carlos Aníbal Pyles Patto</strong>,
+  ex-piloto da Força Aérea Brasileira diagnosticado com Parkinson aos 43 anos.
+  Incentivado pela família e pelo seu neurologista, o <strong>Dr. Nasser Allan</strong>,
+  Patto transformou o diagnóstico em missão: reunir, apoiar e dar voz a quem convive
+  com a doença.
 </p>
 
-<h2>Onde funcionamos</h2>
+<h2>Onde nos encontrar</h2>
 
 <p>
-  A Associação localiza-se na Escola Classe da SQS 206, em Brasília. No espaço acontecem
-  atividades de <strong>fisioterapia, canto coral, fonoaudiologia e artesanato</strong> para
-  os associados.
+  Nossos encontros ocorrem <strong>semanalmente, todos os sábados, das 14h às 17h</strong>,
+  na <strong>Escola Parque 313/314 Sul</strong> (Asa Sul, Plano Piloto — Brasília, DF).
+  As reuniões são abertas ao público em geral, sem obrigatoriedade de ser associado.
 </p>
+
+<p>Atividades oferecidas:</p>
+
+<ul>
+  <li>Palestras informativas</li>
+  <li>Fonoaudiologia</li>
+  <li>Fisioterapia</li>
+  <li>Psicoterapia</li>
+  <li>Musicoterapia</li>
+  <li>Arte e artesanato</li>
+  <li>Convivência nos lanches e reuniões informais</li>
+</ul>
 
 <h2>Projetos com a UnB</h2>
 
@@ -37,6 +53,72 @@ import SectionLayout from '~/layouts/SectionLayout.astro';
   oficinas e atividades de canto coral voltadas à melhoria da qualidade de vida dos seus
   membros.
 </p>
+
+<h2>Como nos ajudar</h2>
+
+<p>
+  A APB é uma instituição <strong>sem fins lucrativos</strong> que vive do apoio e da
+  solidariedade da comunidade. Para continuarmos oferecendo atividades gratuitas e
+  melhorando a qualidade de vida de tantas famílias, você pode fazer a diferença:
+</p>
+
+<h3>Seja um voluntário</h3>
+
+<p>
+  Se você quer doar o seu tempo, carinho ou conhecimento técnico, o seu lugar é aqui.
+  Estamos sempre de portas abertas para <strong>fisioterapeutas, fonoaudiólogos,
+  psicólogos, terapeutas ocupacionais, artistas, musicoterapeutas</strong> ou
+  simplesmente pessoas dispostas a ajudar na organização dos encontros, na recepção
+  e no momento do lanche.
+</p>
+
+<p>
+  <strong>Como funciona:</strong> basta comparecer a uma de nossas reuniões semanais,
+  aos sábados, e conversar com a equipe para entender onde sua ajuda será mais valiosa.
+</p>
+
+<h3>Faça uma doação via PIX</h3>
+
+<p>
+  As contribuições em dinheiro nos ajudam a manter a estrutura das reuniões, adquirir
+  materiais para as oficinas de arte e garantir a continuidade do trabalho.
+  Qualquer valor é muito bem-vindo e integralmente revertido para o bem-estar dos assistidos.
+</p>
+
+<div class="callout">
+  <p><strong>Chave PIX (CNPJ)</strong></p>
+  <p class="pix-key">07.374.279/0001-12</p>
+  <p>Associação Parkinson Brasília</p>
+</div>
+
+<h2>Nossas redes</h2>
+
+<div class="apb-social">
+  <a
+    href="https://www.facebook.com/AssociacaoParkinsonBrasilia"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="apb-social__link"
+  >
+    Facebook
+  </a>
+  <a
+    href="https://www.instagram.com/parkinsonbrasilia"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="apb-social__link"
+  >
+    Instagram
+  </a>
+  <a
+    href="https://parkinsonbrasilia.wordpress.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="apb-social__link"
+  >
+    Blog
+  </a>
+</div>
 
 <blockquote>
   "Decidi transformar o diagnóstico em missão: hoje ajudamos outras pessoas a viver bem
@@ -49,3 +131,40 @@ import SectionLayout from '~/layouts/SectionLayout.astro';
 </p>
 
 </SectionLayout>
+
+<style>
+  .apb-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin: var(--space-6) 0;
+  }
+
+  .apb-social__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target-min);
+    padding: var(--space-2) var(--space-5);
+    border: 2px solid var(--teal);
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--teal);
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+  }
+
+  .apb-social__link:hover {
+    background: var(--teal);
+    color: var(--cream);
+  }
+
+  :global(.pix-key) {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--teal);
+    margin: var(--space-2) 0;
+  }
+</style>
