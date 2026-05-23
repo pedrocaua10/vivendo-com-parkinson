@@ -5,6 +5,7 @@ interface Props {
   caption?: string;
   variant?: 'inline' | 'wide' | 'aside';
   credit?: string;
+  width?: string;
 }
 
 const {
@@ -13,10 +14,11 @@ const {
   caption,
   variant = 'inline',
   credit,
+  width,
 } = Astro.props;
 ---
 
-<figure class={`fig fig--${variant}`}>
+<figure class={`fig fig--${variant}`} style={width ? `--fig-width: ${width}` : undefined}>
   <picture>
     <source srcset={src.replace(/\.png$/, '.webp')} type="image/webp" />
     <img
@@ -59,7 +61,7 @@ const {
 
   /* ---- Variante aside: flutua à direita no desktop ---- */
   .fig--aside {
-    max-width: 320px;
+    max-width: var(--fig-width, 320px);
     float: right;
     margin-left: var(--space-8);
     margin-bottom: var(--space-6);
@@ -90,12 +92,13 @@ const {
     opacity: 0.8;
   }
 
-  /* ---- Mobile: aside vira inline ---- */
+  /* ---- Mobile: aside fica centralizado no tamanho definido ou 100% ---- */
   @media (max-width: 700px) {
     .fig--aside {
       float: none;
-      max-width: 100%;
-      margin-left: 0;
+      max-width: var(--fig-width, 100%);
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>
