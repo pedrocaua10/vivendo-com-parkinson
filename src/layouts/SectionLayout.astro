@@ -346,6 +346,51 @@ const current = sections[currentIndex];
     .chapter-nav-details[open] > ol { grid-template-columns: 1fr; }
     .section-pagination             { grid-template-columns: 1fr; }
   }
+
+  @media print {
+    .section-shell {
+      display: block;
+      padding-block: 0;
+    }
+    .chapter-nav { display: none; }
+    .section-pagination { display: none; }
+    .section-content { max-width: 100%; }
+    .section-header {
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+    }
+    .section-prose :global(p),
+    .section-prose :global(li) {
+      max-width: 100%;
+      font-size: 11pt;
+      color: black;
+      line-height: 1.5;
+    }
+    .section-prose :global(h2) {
+      font-size: 14pt;
+      color: black;
+      break-after: avoid;
+      margin-top: 1.5rem;
+    }
+    .section-prose :global(h3) {
+      font-size: 12pt;
+      color: black;
+      break-after: avoid;
+      margin-top: 1rem;
+    }
+    .section-prose :global(.callout) {
+      background: #f5f5f5 !important;
+      border: 1px solid #aaa;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .section-prose :global(blockquote) {
+      background: #f5f5f5 !important;
+      border-left: 3px solid #aaa;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
 </style>
 
 <script>
