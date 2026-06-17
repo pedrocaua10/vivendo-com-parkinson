@@ -46,11 +46,14 @@ const fullTitle = title === 'Vivendo com Parkinson'
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
   />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / social sharing -->
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content={Astro.url.href} />
+  <meta property="og:site_name" content="Vivendo com Parkinson" />
+  <meta name="twitter:card" content="summary" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
