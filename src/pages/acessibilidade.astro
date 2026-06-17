@@ -1,0 +1,65 @@
+---
+import SectionLayout from '~/layouts/SectionLayout.astro';
+---
+
+<SectionLayout
+  title="Acessibilidade"
+  description="Declaração de acessibilidade do portal Vivendo com Parkinson — conformidade WCAG 2.1."
+  section="acessibilidade"
+>
+
+<h2>Compromisso com a acessibilidade</h2>
+
+<p>
+  O portal <strong>Vivendo com Parkinson</strong> foi desenvolvido com acessibilidade como
+  requisito central — não como ajuste posterior. Nosso público inclui pessoas com Doença
+  de Parkinson, seus familiares e cuidadores, muitos dos quais convivem com tremor,
+  bradicinesia, baixa visão e fadiga cognitiva.
+</p>
+
+<h2>Padrões adotados</h2>
+
+<p>
+  Buscamos conformidade com as <strong>Diretrizes de Acessibilidade para Conteúdo Web
+  (WCAG) 2.1, nível AA</strong>, conforme recomendado pelo W3C e exigido pela
+  Lei Brasileira de Inclusão (Lei 13.146/2015 — Estatuto da Pessoa com Deficiência).
+</p>
+
+<h2>Medidas implementadas</h2>
+
+<ul>
+  <li>Tipografia ampliada — fonte base de 18px com Atkinson Hyperlegible, projetada para baixa visão</li>
+  <li>Alvos de toque com no mínimo 48×48px e espaçamento mínimo de 8px entre elementos interativos</li>
+  <li>Contraste de cores em conformidade com WCAG AA em todo o texto principal</li>
+  <li>Navegação completa por teclado, com indicadores de foco visíveis em laranja-terracota</li>
+  <li>Link "Ir para o conteúdo" disponível para usuários de leitor de tela</li>
+  <li>Estrutura semântica com marcos ARIA (<code>main</code>, <code>nav</code>, <code>aside</code>, <code>footer</code>)</li>
+  <li>Todas as imagens possuem texto alternativo descritivo</li>
+  <li>Respeito à preferência do sistema operacional por movimento reduzido (<code>prefers-reduced-motion</code>)</li>
+  <li>Sem conteúdo piscante ou flashes acima de 3Hz</li>
+  <li>Sem sessões com tempo limite</li>
+</ul>
+
+<h2>Limitações conhecidas</h2>
+
+<ul>
+  <li>O portal está em desenvolvimento ativo — alguns recursos podem ter passado por verificação incompleta</li>
+  <li>Conteúdo de terceiros (redes sociais externas) não está sob nosso controle</li>
+</ul>
+
+<h2>Como reportar uma barreira</h2>
+
+<p>
+  Encontrou algum elemento inacessível? Sua contribuição é fundamental para melhorarmos
+  o portal. Entre em contato pelo <a href="https://wa.me/556181634774" target="_blank" rel="noopener noreferrer">WhatsApp (61) 8163-4774</a>
+  ou visite nossa <a href="/contato">página de contato</a>.
+</p>
+
+<h2>Referências</h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener noreferrer">WCAG 2.1 — W3C</a></li>
+  <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" rel="noopener noreferrer">Lei Brasileira de Inclusão (Lei 13.146/2015)</a></li>
+</ul>
+
+</SectionLayout>
